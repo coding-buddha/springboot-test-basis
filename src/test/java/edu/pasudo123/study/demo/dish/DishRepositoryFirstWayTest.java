@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -18,11 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @Sql(scripts = {"classpath:data/dish_insert.sql"})
 @ActiveProfiles("test")
-@DisplayName("요리 레파지토리는")
-class DishRepositoryTest {
-
-    @Autowired
-    private TestEntityManager testEntityManager;
+@DisplayName("메뉴 레파지토리에 대한 첫번째 방법 테스트는")
+class DishRepositoryFirstWayTest {
 
     @Autowired
     private DishRepository dishRepository;
