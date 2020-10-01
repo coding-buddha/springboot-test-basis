@@ -6,15 +6,14 @@ import edu.pasudo123.study.demo.orders.Order;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "order_dish")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class OrderItem {
+public class OrderDish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +31,11 @@ public class OrderItem {
     @JoinColumn(name = "orders_id")
     private Order order;
 
-    public static OrderItem createOrderItem(final Dish dish) {
-        OrderItem orderItem = new OrderItem();
-        orderItem.dish = dish;
-        orderItem.name = dish.getName();
-        return orderItem;
+    public static OrderDish createOrderItem(final Dish dish) {
+        OrderDish orderDish = new OrderDish();
+        orderDish.dish = dish;
+        orderDish.name = dish.getName();
+        return orderDish;
     }
 
     public void setOrder(final Order order) {

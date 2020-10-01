@@ -1,6 +1,7 @@
 package edu.pasudo123.study.demo.orders;
 
-import edu.pasudo123.study.demo.orderitem.OrderItemDto;
+import edu.pasudo123.study.demo.orderitem.OrderDish;
+import edu.pasudo123.study.demo.orderitem.OrderDishDto;
 import lombok.Getter;
 
 import java.util.List;
@@ -13,14 +14,22 @@ public class OrderDto {
 
         private Long id;
         private String orderDate;
-        private final List<OrderItemDto.Response> items;
+        private final List<OrderDishDto.Response> items;
 
         public Response(final Order order) {
             this.id = order.getId();
             this.orderDate = order.getOrderTime().toString();
-            this.items = order.getOrderItems()
+            this.items = order.getOrderDishes()
                     .stream()
-                    .map(OrderItemDto.Response::new)
+                    .map(OrderDishDto.Response::new)
+                    .collect(Collectors.toList());
+        }
+
+        public Response(final long id, final String orderDate, final List<OrderDish> orderDishes) {
+            this.id = id;
+            this.orderDate = orderDate;
+            this.items = orderDishes.stream()
+                    .map(OrderDishDto.Response::new)
                     .collect(Collectors.toList());
         }
     }

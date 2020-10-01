@@ -17,12 +17,18 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public List<OrderDto.Response> findAll() {
-        final List<Order> orders = orderRepository.findAll();
+        final List<Order> orders = orderRepository.findAllFirstOpt();
 
         return orders.stream()
-                .map(OrderDto.Response::new)
-                .collect(Collectors.toList());
+                .map(order -> {
+                    final OrderDto.Response response =  new OrderDto.Response(
+                            order.getId(),
+                            order.getOrderTime().toString(),
+                            order.getOrderDishes());
 
+                    return response;
+                })
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

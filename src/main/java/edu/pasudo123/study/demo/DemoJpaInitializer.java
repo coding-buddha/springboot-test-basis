@@ -2,14 +2,13 @@ package edu.pasudo123.study.demo;
 
 import edu.pasudo123.study.demo.dish.Dish;
 import edu.pasudo123.study.demo.dish.DishRepository;
-import edu.pasudo123.study.demo.orderitem.OrderItem;
-import edu.pasudo123.study.demo.orderitem.OrderItemRepository;
+import edu.pasudo123.study.demo.orderitem.OrderDish;
+import edu.pasudo123.study.demo.orderitem.OrderDIshRepository;
 import edu.pasudo123.study.demo.orders.Order;
 import edu.pasudo123.study.demo.orders.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +19,7 @@ public class DemoJpaInitializer {
 
     private final DishRepository dishRepository;
     private final OrderRepository orderRepository;
-    private final OrderItemRepository orderItemRepository;
+    private final OrderDIshRepository orderDIshRepository;
 
     public void init() {
         // dishes
@@ -39,21 +38,29 @@ public class DemoJpaInitializer {
 
         /** order-items **/
 
-        // first orders
-        List<OrderItem> firstOrderItems = savedMenu.stream()
-                .map(OrderItem::createOrderItem)
+        /** first orders **/
+        List<OrderDish> firstOrderDishes = savedMenu.stream()
+                .map(OrderDish::createOrderItem)
                 .collect(Collectors.toList());
 
 
-        Order firstOrder = Order.createOrder(firstOrderItems);
+        Order firstOrder = Order.createOrder(firstOrderDishes);
         orderRepository.save(firstOrder);
 
-        // second orders
-        List<OrderItem> secondOrderItems = savedMenu.stream()
-                .map(OrderItem::createOrderItem)
+        /** second orders **/
+        List<OrderDish> secondOrderDishes = savedMenu.stream()
+                .map(OrderDish::createOrderItem)
                 .collect(Collectors.toList());
 
-        Order secondOrder = Order.createOrder(secondOrderItems);
+        Order secondOrder = Order.createOrder(secondOrderDishes);
         orderRepository.save(secondOrder);
+
+        /** third orders **/
+        List<OrderDish> thirdOrderDishes = savedMenu.stream()
+                .map(OrderDish::createOrderItem)
+                .collect(Collectors.toList());
+
+        Order thirdOrder = Order.createOrder(thirdOrderDishes);
+        orderRepository.save(thirdOrder);
     }
 }

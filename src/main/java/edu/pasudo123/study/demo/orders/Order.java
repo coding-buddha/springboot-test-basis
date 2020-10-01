@@ -1,6 +1,6 @@
 package edu.pasudo123.study.demo.orders;
 
-import edu.pasudo123.study.demo.orderitem.OrderItem;
+import edu.pasudo123.study.demo.orderitem.OrderDish;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,13 +27,13 @@ public class Order {
     private LocalDateTime orderTime;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderDish> orderDishes = new ArrayList<>();
 
-    public static Order createOrder(final List<OrderItem> orderItems) {
+    public static Order createOrder(final List<OrderDish> orderDishes) {
         Order order = new Order();
-        order.orderItems.addAll(orderItems);
+        order.orderDishes.addAll(orderDishes);
         order.orderTime = LocalDateTime.now();
-        order.orderItems.forEach(orderItem -> orderItem.setOrder(order));
+        order.orderDishes.forEach(orderItem -> orderItem.setOrder(order));
         return order;
     }
 }
