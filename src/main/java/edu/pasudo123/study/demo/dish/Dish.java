@@ -16,7 +16,7 @@ public class Dish {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false, columnDefinition = "VARCHAR(50)", length = 50)
+    @Column(name = "name", unique = true, nullable = false, columnDefinition = "VARCHAR(50)", length = 50)
     private String name;
 
     @Column(name = "vegetarian", nullable = false, columnDefinition = "BOOLEAN")
