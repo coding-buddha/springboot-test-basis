@@ -3,7 +3,7 @@ package edu.pasudo123.study.demo;
 import edu.pasudo123.study.demo.dish.Dish;
 import edu.pasudo123.study.demo.dish.DishRepository;
 import edu.pasudo123.study.demo.orderitem.OrderDish;
-import edu.pasudo123.study.demo.orderitem.OrderDIshRepository;
+import edu.pasudo123.study.demo.orderitem.OrderDishRepository;
 import edu.pasudo123.study.demo.orders.Order;
 import edu.pasudo123.study.demo.orders.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class DemoJpaInitializer {
 
     private final DishRepository dishRepository;
     private final OrderRepository orderRepository;
-    private final OrderDIshRepository orderDIshRepository;
+    private final OrderDishRepository orderDIshRepository;
 
     public void init() {
         // dishes
