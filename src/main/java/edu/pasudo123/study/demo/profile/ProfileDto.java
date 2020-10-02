@@ -15,7 +15,7 @@ public class ProfileDto {
             this.id = profile.getId();
             this.name = profile.getName();
             this.regDate = profile.getRegDate().toString();
-            this.detailInfo = profile.getDetail().getDetailInfo();
+//            this.detailInfo = profile.getDetail().getDetailInfo();
         }
     }
 }

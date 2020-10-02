@@ -20,7 +20,16 @@ public class ProfileDetail {
     @Column(name = "detail_info", columnDefinition = "VARCHAR(255)")
     private String detailInfo;
 
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", unique = true, nullable = false)
+    private Profile profile;
+
     public ProfileDetail(final String detailInfo) {
         this.detailInfo = detailInfo;
+    }
+
+    public void initProfile(Profile profile) {
+        this.profile = profile;
     }
 }

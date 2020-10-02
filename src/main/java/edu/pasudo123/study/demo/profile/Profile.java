@@ -24,20 +24,9 @@ public class Profile {
     @Column(name = "name", nullable = false)
     private String name;
 
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "detail_id", unique = true, nullable = false)
-//    private ProfileDetail detail;
-
-    // (1)
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "detail_id", unique = true, nullable = false)
+    /** https://www.youtube.com/watch?v=qRWhFkB1D8c&ab_channel=ThorbenJanssen **/
+    @OneToOne(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     private ProfileDetail detail;
-
-    // (2)
-//    @MapsId
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id", unique = true, nullable = false)
-//    private ProfileDetail detail;
 
     @Column(name = "reg_date", nullable = false)
     private LocalDateTime regDate;
@@ -47,5 +36,6 @@ public class Profile {
         this.name = name;
         this.regDate = LocalDateTime.now();
         this.detail = detail;
+        detail.initProfile(this);
     }
 }
