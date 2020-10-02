@@ -17,7 +17,10 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // JPA 관련 엔티티 초기화
-        demoJpaInitializer.init();
+        // JPA N+1 을 위한 엔티티 초기화
+//        demoJpaInitializer.initOneToManyExSampleEntity();
+
+        // one to one lazy loading 을 위한 초기화
+        demoJpaInitializer.initOneToOneExSampleEntity();
     }
 }

@@ -3,9 +3,11 @@ package edu.pasudo123.study.demo;
 import edu.pasudo123.study.demo.dish.Dish;
 import edu.pasudo123.study.demo.dish.DishRepository;
 import edu.pasudo123.study.demo.orderitem.OrderDish;
-import edu.pasudo123.study.demo.orderitem.OrderDishRepository;
 import edu.pasudo123.study.demo.orders.Order;
 import edu.pasudo123.study.demo.orders.OrderRepository;
+import edu.pasudo123.study.demo.profile.Profile;
+import edu.pasudo123.study.demo.profile.ProfileDetail;
+import edu.pasudo123.study.demo.profile.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,9 +21,15 @@ public class DemoJpaInitializer {
 
     private final DishRepository dishRepository;
     private final OrderRepository orderRepository;
-    private final OrderDishRepository orderDIshRepository;
+    private final ProfileRepository profileRepository;
 
-    public void init() {
+    public void initOneToOneExSampleEntity() {
+        // profile
+        Profile profile = new Profile("PARK SUNG DONG", new ProfileDetail("Tong Yeong"));
+        profileRepository.save(profile);
+    }
+
+    public void initOneToManyExSampleEntity() {
         // dishes
         final List<Dish> menu = Arrays.asList(
         new Dish("pork", false, 800, Dish.Type.MEAT),
