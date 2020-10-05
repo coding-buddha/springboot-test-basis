@@ -24,8 +24,8 @@ spring:
     platform: h2                      # datasource 타입 플랫폼 정의
 
     # .sql 파일을 classpath 하위로 두고, 특정 디렉토리 아래에서 실행시킬 수 있다.
-    schema: classpath:h2/schema.sql  # spring boot startup 시, 특정 경로의 schema.sql 실행
-    data: classpath:h2/data.sql      # spring boot startup 시, 특정 경로의 data.sql 실행
+#    schema: classpath:h2/schema.sql  # spring boot startup 시, 특정 경로의 schema.sql 실행
+#    data: classpath:h2/data.sql      # spring boot startup 시, 특정 경로의 data.sql 실행
 
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect

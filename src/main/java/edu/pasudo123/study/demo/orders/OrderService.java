@@ -1,10 +1,12 @@
 package edu.pasudo123.study.demo.orders;
 
+import edu.pasudo123.study.demo.orders.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +30,15 @@ public class OrderService {
 
                     return response;
                 })
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<OrderDto.Response> findAllByQuerydsl() {
+        final List<Order> orders = orderRepository.findAllByFetchJoin();
+
+        return orders.stream()
+                .map(OrderDto.Response::new)
                 .collect(Collectors.toList());
     }
 

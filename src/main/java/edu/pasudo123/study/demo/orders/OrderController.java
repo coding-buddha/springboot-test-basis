@@ -21,6 +21,11 @@ public class OrderController {
         return ResponseEntity.ok().body(orderService.findAll());
     }
 
+    @GetMapping("querydsl")
+    public ResponseEntity<List<OrderDto.Response>> findAllByQuerydsl() {
+        return ResponseEntity.ok().body(orderService.findAllByQuerydsl());
+    }
+
     @GetMapping("{orderId}")
     public ResponseEntity<OrderDto.Response> findOneById(@PathVariable("orderId") final long orderId) {
         return ResponseEntity.ok().body(orderService.findById(orderId));

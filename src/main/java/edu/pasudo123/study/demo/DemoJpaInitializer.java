@@ -4,7 +4,7 @@ import edu.pasudo123.study.demo.dish.Dish;
 import edu.pasudo123.study.demo.dish.DishRepository;
 import edu.pasudo123.study.demo.orderitem.OrderDish;
 import edu.pasudo123.study.demo.orders.Order;
-import edu.pasudo123.study.demo.orders.OrderRepository;
+import edu.pasudo123.study.demo.orders.repository.OrderRepository;
 import edu.pasudo123.study.demo.profile.Profile;
 import edu.pasudo123.study.demo.profile.ProfileDetail;
 import edu.pasudo123.study.demo.profile.ProfileRepository;
