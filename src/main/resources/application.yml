@@ -1,12 +1,32 @@
 spring:
   profiles:
-    active: test
+    active: dev
 
 server:
   port: 8099
 
 ---
-## test profile ##
+## dev ##
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useSSL=false&allowPublicKeyRetrieval=true&useTimezone=true&serverTimezone=Asia/Seoul
+    username: root
+    password: rootpass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+    show-sql: true
+    properties.hibernate.format_sql: true
+
+---
+## test ##
 spring:
   profiles: test
 
