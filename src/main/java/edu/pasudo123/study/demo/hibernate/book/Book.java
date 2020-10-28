@@ -32,4 +32,10 @@ public class Book {
         this.name = name;
         this.isbn = UUID.randomUUID().toString().replaceAll(DASH, Strings.EMPTY).substring(0, 20);
     }
+
+    public void update(Book book) {
+        this.id = book.getId();
+        this.name = book.getName();
+        this.isbn = book.getIsbn();
+    }
 }

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
@@ -24,14 +24,26 @@ public class BookService {
 
     private final BookSimpleRepository bookSimpleRepository;
     private final BookJpaRepository bookJpaRepository;
-    private final EntityManager em;
 
     private static final int THREAD_POOL_SIZE = 2;
     private static final Executor EXECUTOR = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
-    
+
+    /**
+     * @param book
+     */
+    @Transactional
     public void multipleSave(final Book book) {
         IntStream.range(0, 2).forEach(index -> EXECUTOR.execute(() -> {
+            log.info("(1) current thread name :: {}", Thread.currentThread().getName());
+            Optional<Book> optional = bookJpaRepository.findById(book.getId());
+
+            if(optional.isPresent()) {
+                optional.get().update(book);
+                return;
+            }
+
             bookJpaRepository.save(book);
+            log.info("(2) current thread name :: {}", Thread.currentThread().getName());
         }));
     }
 
@@ -52,24 +64,5 @@ public class BookService {
     }
 
     public void duplicateEntry(final Long id) {
-
-        // 동일
-        Book book1 = new Book(id, "My story");
-        Book book2 = new Book(id, "My story");
-
-        em.persist(book1);
-        em.flush();
-        em.clear();
-
-        try {
-            em.persist(book2);
-            em.flush();
-        } catch (SQLGrammarException e) {
-            log.error("(1) ====> ");
-            log.error("error {} ", e.getMessage());
-        } catch (Exception e) {
-            log.error("(2) ====> ");
-            log.error("error {} ", e.getMessage());
-        }
     }
 }
