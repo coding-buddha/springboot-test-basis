@@ -12,7 +12,6 @@ public class DoSomethingService {
 
     private final DishRepository dishRepository;
 
-    // public
     @Transactional
     public void publicAccessModifierSave() {
         Dish dish = new Dish("public-coffee", false, 300, Dish.Type.OTHER);
@@ -22,12 +21,12 @@ public class DoSomethingService {
         throw new RuntimeException("force runtime exception");
     }
 
-    @Transactional
+    @Transactional // 필요에 따라 주석처리
     public void publicToDefaultModifierSave(final String number) {
         this.defaultAccessModifierSave(number);
     }
 
-    @Transactional
+    @Transactional // 필요에 따라 주석처리
     void defaultAccessModifierSave(final String number) {
         Dish dish = new Dish("default-coffee".concat(number), false, 300, Dish.Type.OTHER);
         dish = dishRepository.save(dish);
@@ -35,7 +34,7 @@ public class DoSomethingService {
         throw new RuntimeException("force runtime exception");
     }
 
-//    @Transactional
+    @Transactional  // 필요에 따라 주석처리
     public void publicToPrivateModifierSave(final String number) {
         this.defaultAccessModifierSave(number);
     }
