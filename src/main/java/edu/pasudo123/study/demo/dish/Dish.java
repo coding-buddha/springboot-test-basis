@@ -1,14 +1,18 @@
 package edu.pasudo123.study.demo.dish;
 
 import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "dish")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
+@EntityListeners(AuditingEntityListener.class)
 public class Dish {
 
     @Id
@@ -28,6 +32,10 @@ public class Dish {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, columnDefinition = "ENUM('MEAT', 'FISH', 'OTHER')")
     private Type type;
+
+    @LastModifiedDate
+    @Column(name = "last_modified_date", nullable = false, columnDefinition = "DATETIME", updatable = true)
+    private LocalDateTime lastModifiedDate;
 
     public enum Type{
         MEAT, FISH, OTHER
