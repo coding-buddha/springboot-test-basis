@@ -25,6 +25,12 @@ public class DoSomethingController {
         return RETURN_VALUE;
     }
 
+    @GetMapping("protected-do/{number}")
+    public String protectedSomething(@PathVariable(value = "number", required = false) String number) {
+        somethingService.publicToProtectedModifierSave(number);
+        return RETURN_VALUE;
+    }
+
     @GetMapping("private-do/{number}")
     public String privateSomething(@PathVariable(value = "number", required = false) String number) {
         somethingService.publicToPrivateModifierSave(number);
