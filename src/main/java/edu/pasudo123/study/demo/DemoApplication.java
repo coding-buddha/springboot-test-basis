@@ -2,6 +2,7 @@ package edu.pasudo123.study.demo;
 
 import edu.pasudo123.study.demo.springio.service.AccountService;
 import edu.pasudo123.study.demo.springio.service.MemberService;
+import edu.pasudo123.study.demo.springio.service.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
@@ -35,6 +36,7 @@ public class DemoApplication implements CommandLineRunner {
         // one to one lazy loading 을 위한 초기화
         // demoJpaInitializer.initOneToOneExSampleEntity();
 
+        // https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop-proxying
         log.info("=== proxy check run ===");
         AccountService accountService = context.getBean(AccountService.class);
 
