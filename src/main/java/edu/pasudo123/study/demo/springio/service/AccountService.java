@@ -27,6 +27,7 @@ public class AccountService {
     @Transactional
     public Account createTransaction(Account account) {
         log.info("current account service class : {}", getClass());
+        log.info("entityManager : {}", entityManager.getClass());
         entityManager.persist(account);
         return account;
     }
