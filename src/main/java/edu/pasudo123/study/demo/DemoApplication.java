@@ -39,8 +39,6 @@ public class DemoApplication implements CommandLineRunner {
         // https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop-proxying
         log.info("=== proxy check run ===");
         AccountService accountService = context.getBean(AccountService.class);
-
-        // cglib proxy 가 출력된다. :: AccountService class 를 proxy 객체(CGLIB) 로 래핑.
         log.info("account service bean");
         log.info("current class : {}", accountService.getClass());
 
